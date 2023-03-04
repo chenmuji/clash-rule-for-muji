@@ -15,7 +15,6 @@ DOMAIN-SUFFIX,18comic.vip
 DOMAIN-SUFFIX,18comic.org
 DOMAIN-SUFFIX,patreon.com
 DOMAIN-SUFFIX,cyhz2.com
-DOMAIN-SUFFIX,live.yuanacg.com
 DOMAIN-SUFFIX,m.ok9.icu
 DOMAIN-SUFFIX,bygcloud.com
 DOMAIN-SUFFIX,acggalxw.com
@@ -26,6 +25,7 @@ DOMAIN-SUFFIX,acguz.com
 DOMAIN-SUFFIX,viva-la-vita.org
 DOMAIN-SUFFIX,886acg.com
 DOMAIN-SUFFIX,toolsnotincluded.net
+DOMAIN-KEYWORD,yuanacg
 DOMAIN-KEYWORD,legado
 DOMAIN-KEYWORD,xacg
 DOMAIN-KEYWORD,klei
