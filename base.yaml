@@ -6,30 +6,27 @@ log-level: info
 external-controller: '127.0.0.1:9090'
 
 dns:
-    enable: true
-    ipv6: false
-    # 建议保留国内可靠的 DNS
-    default-nameserver: [223.5.5.5, 119.29.29.29] 
-    
-    enhanced-mode: fake-ip
-    fake-ip-range: 198.18.0.1/16
-    use-hosts: true
-    
-    # 优化：将 Cloudflare 加入主 nameserver 或保持在 fallback
-    # 优先使用国内 DoH，若失败或需要解析国外域名则走 fallback
-    nameserver: 
-      - 'https://doh.pub/dns-query'  # 腾讯
-      - 'https://dns.alidns.com/dns-query' # 阿里
-      - 'https://dns.cloudflare.com/dns-query' # 结合你提供的网页信息
-      
-    fallback: 
-      - 'https://dns.cloudflare.com/dns-query'
-      - 'https://doh.dns.sb/dns-query' # 干净的国外解析
-      - 'tls://8.8.4.4:853' # Google DoT
-      
-    fallback-filter: 
-      geoip: true
-      # 过滤掉私有 IP 和非法 IP，确保国外流量走代理
-      ipcidr: 
-        - 240.0.0.0/4 
-        - 0.0.0.0/32
+  enable: true
+  ipv6: false
+  default-nameserver: [223.5.5.5, 119.29.29.29]
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  use-hosts: true
+  nameserver:
+    - 'https://doh.pub/dns-query'
+    - 'https://dns.alidns.com/dns-query'
+    - 'https://dns.cloudflare.com/dns-query'
+  fallback:
+    - 'https://dns.cloudflare.com/dns-query'
+    - 'https://doh.dns.sb/dns-query'
+    - 'tls://8.8.4.4:853'
+  fallback-filter:
+    geoip: true
+    ipcidr:
+      - 240.0.0.0/4
+      - 0.0.0.0/32
+
+# 必须保留以下占位符，否则转换会报错
+proxies: []
+proxy-groups: []
+rules: []
