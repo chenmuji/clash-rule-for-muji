@@ -12,19 +12,11 @@ dns:
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   use-hosts: true
-  nameserver:
-    - 'https://doh.pub/dns-query'
-    - 'https://dns.alidns.com/dns-query'
-    - 'https://dns.cloudflare.com/dns-query'
-  fallback:
-    - 'https://dns.cloudflare.com/dns-query'
-    - 'https://doh.dns.sb/dns-query'
-    - 'tls://8.8.4.4:853'
+  nameserver: [https://doh.pub/dns-query, https://dns.alidns.com/dns-query, https://dns.cloudflare.com/dns-query]
+  fallback: [https://dns.cloudflare.com/dns-query, tls://8.8.4.4:853]
   fallback-filter:
     geoip: true
-    ipcidr:
-      - 240.0.0.0/4
-      - 0.0.0.0/32
+    ipcidr: [240.0.0.0/4, 0.0.0.0/32]
 
 # 必须保留以下占位符，否则转换会报错
 proxies: []
