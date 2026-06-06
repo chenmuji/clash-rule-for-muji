@@ -14,16 +14,11 @@ dns:
   listen: 0.0.0.0:7874
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
-  
-  # 开启内存缓存，降低路由器 CPU 消耗和网络延迟
-  cache-style: memory
-  
   # 用于解析 nameserver 域名的基础 DNS
   default-nameserver:
     - 223.5.5.5
     - 119.29.29.29
     - 114.114.114.114
-    
   # 国内域名及未匹配域名的解析 DNS（引入了 DoH 加密 DNS 防污染）
   nameserver:
     - 223.5.5.5
