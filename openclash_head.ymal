@@ -1,20 +1,41 @@
 allow-lan: true
 mode: rule
 log-level: info
-external-controller: '127.0.0.1:9090'
+# 允许局域网内所有设备访问 Clash 的控制面板
+external-controller: '0.0.0.0:9090'
+
+# 如果需要为控制面板设置密码，可以取消下面这行的注释（把 secret 改为你自己的密码）
+# secret: 'your_password'
 
 dns:
   enable: true
   ipv6: false
-  default-nameserver: [223.5.5.5, 119.29.29.29]
-  nameserver: [223.5.5.5, 119.29.29.29]
+  # 已完美对齐你 OpenClash 界面上的 DNS 监听端口
+  listen: 0.0.0.0:7874
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
+  
+  # 开启内存缓存，降低路由器 CPU 消耗和网络延迟
+  cache-style: memory
+  
+  # 用于解析 nameserver 域名的基础 DNS
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+    - 114.114.114.114
+    
+  # 国内域名及未匹配域名的解析 DNS（引入了 DoH 加密 DNS 防污染）
+  nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+    - https://dns.alicdn.com/dns-query
+    - https://doh.pub/dns-query
+
+  # 优质的 Fake-IP 过滤列表，确保国内音游、主机网络、时间同步不走代理
   fake-ip-filter: ['*.lan', '*.localdomain', '*.example', '*.invalid', '*.localhost', '*.test', '*.local', '*.home.arpa', 'time.*.com', 'time.*.gov', 'time.*.edu.cn', 'time.*.apple.com', 'time1.*.com', 'time2.*.com', 'time3.*.com', 'time4.*.com', 'time5.*.com', 'time6.*.com', 'time7.*.com', 'ntp.*.com', 'ntp1.*.com', 'ntp2.*.com', 'ntp3.*.com', 'ntp4.*.com', 'ntp5.*.com', 'ntp6.*.com', 'ntp7.*.com', '*.time.edu.cn', '*.ntp.org.cn', +.pool.ntp.org, time1.cloud.tencent.com, 'stun.*.*', 'stun.*.*.*', swscan.apple.com, mesu.apple.com, music.163.com, '*.music.163.com', '*.126.net', musicapi.taihe.com, music.taihe.com, songsearch.kugou.com, trackercdn.kugou.com, '*.kuwo.cn', api-jooxtt.sanook.com, api.joox.com, y.qq.com, '*.y.qq.com', streamoc.music.tc.qq.com, mobileoc.music.tc.qq.com, isure.stream.qqmusic.qq.com, dl.stream.qqmusic.qq.com, aqqmusic.tc.qq.com, amobile.music.tc.qq.com, localhost.ptlogin2.qq.com, '*.msftconnecttest.com', '*.msftncsi.com', '*.xiami.com', '*.music.migu.cn', music.migu.cn, +.wotgame.cn, +.wggames.cn, +.wowsgame.cn, +.wargaming.net, '*.*.*.srv.nintendo.net', '*.*.stun.playstation.net', 'xbox.*.*.microsoft.com', '*.*.xboxlive.com', '*.ipv6.microsoft.com', 'teredo.*.*.*', 'teredo.*.*', speedtest.cros.wr.pvp.net, +.jjvip8.com, www.douyu.com, activityapi.huya.com, activityapi.huya.com.w.cdngslb.com, www.bilibili.com, api.bilibili.com, a.w.bilicdn1.com]
   use-hosts: true
 
-
-# 必须保留以下占位符，否则转换会报错
+# 必须保留以下占位符，否则转换或保存时会报错
 proxies: []
 proxy-groups: []
 rules: []
